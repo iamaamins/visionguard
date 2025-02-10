@@ -1,5 +1,3 @@
-import { createRoot } from 'react-dom/client';
-
-const root = createRoot(document.body);
-
-root.render(<h2>Hello from React!</h2>);
+export default function App() {
+  return <main className='bg-red-500'>Hello</main>;
+}

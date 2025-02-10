@@ -3,7 +3,7 @@ import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
 
 export const mainConfig: Configuration = {
-  entry: './src/index.ts',
+  entry: './src/main.ts',
   module: {
     rules,
   },
