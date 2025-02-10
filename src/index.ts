@@ -15,7 +15,7 @@ if (started) app.quit();
 
 app.on('ready', () => {
   // Create main window and tray
-  const mainWindow = createMainWindow();
+  const mainWindow = createMainWindow(app);
   const tray = createTray(app, mainWindow);
 
   // App features

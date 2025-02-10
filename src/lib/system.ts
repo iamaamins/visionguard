@@ -6,12 +6,12 @@ import { isMac } from './config';
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
 
-export function createMainWindow() {
+export function createMainWindow(app: App) {
   const mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     resizable: false,
-    icon: path.join(__dirname, 'assets', 'icon.png'),
+    icon: path.join(app.getAppPath(), 'src', 'assets', 'icon.png'),
     webPreferences: { preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY },
   });
 
@@ -23,7 +23,8 @@ export function createMainWindow() {
 export function createTray(app: App, mainWindow: BrowserWindow) {
   const tray = new Tray(
     path.join(
-      __dirname,
+      app.getAppPath(),
+      'src',
       'assets',
       isMac ? 'trayIconTemplate.png' : 'trayIcon.png'
     )
