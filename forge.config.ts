@@ -21,7 +21,10 @@ const config: ForgeConfig = {
   makers: [
     new MakerSquirrel({}),
     new MakerZIP({}, ['darwin']),
-    new MakerDMG({ format: 'ULFO' }),
+    new MakerDMG({
+      format: 'ULFO',
+      background: './src/assets/DMGInstallerBackground.png',
+    }),
     new MakerRpm({}),
     new MakerDeb({}),
   ],

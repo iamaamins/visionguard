@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { TimerState } from '../types';
 import { RiResetLeftLine } from 'react-icons/ri';
-import { LuTimerReset } from 'react-icons/lu';
 
 export default function Home() {
   const [timer, setTimer] = useState<TimerState | null>(null);
 
-  // Subscribe to timer
   useEffect(() => {
     return window.timer.onUpdate((state) => setTimer(state));
   }, []);
