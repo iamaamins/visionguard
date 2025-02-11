@@ -33,7 +33,5 @@ app.on('ready', () => {
     mainWindow.hide();
     if (isMac) app.dock.hide();
   });
-  ipcMain.handle('timer:resume', () => resumeTimer(mainWindow, tray));
-  ipcMain.handle('timer:pause', () => pauseTimer(mainWindow));
   ipcMain.handle('timer:reset', () => resetTimer(mainWindow, tray));
 });

@@ -31,21 +31,6 @@ export default function App() {
             </p>
           </div>
           <div className='flex items-center gap-2'>
-            {timer.isPaused ? (
-              <button
-                onClick={() => window.timer.resume()}
-                className='bg-slight-gray flex h-10 w-10 cursor-pointer items-center justify-center rounded-md'
-              >
-                <RiPlayLargeLine />
-              </button>
-            ) : (
-              <button
-                onClick={() => window.timer.pause()}
-                className='bg-slight-gray flex h-10 w-10 cursor-pointer items-center justify-center rounded-md'
-              >
-                <RiPauseLargeLine />
-              </button>
-            )}
             <button
               onClick={() => window.timer.reset()}
               className='bg-slight-gray flex h-10 w-10 cursor-pointer items-center justify-center rounded-md'
