@@ -10,6 +10,7 @@ import {
 } from './lib/timer';
 import { isMac } from './lib/config';
 import { createMainWindow, createTray } from './lib/system';
+import { launchAppOnLogin } from './lib/utils';
 
 if (started) app.quit();
 
@@ -23,6 +24,9 @@ app.on('ready', () => {
   checkIdleTime(mainWindow);
   handleAuthEvents(mainWindow, tray);
 
+  // Launch app on login
+  launchAppOnLogin();
+
   // Event listeners
   mainWindow.on('close', (e) => {
     e.preventDefault();
@@ -32,7 +36,4 @@ app.on('ready', () => {
   ipcMain.handle('timer:resume', () => resumeTimer(mainWindow, tray));
   ipcMain.handle('timer:pause', () => pauseTimer(mainWindow));
   ipcMain.handle('timer:reset', () => resetTimer(mainWindow, tray));
-
-  // App settings
-  app.setLoginItemSettings({ openAtLogin: true, path: app.getPath('exe') });
 });

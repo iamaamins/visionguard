@@ -22,6 +22,7 @@
     "@electron-forge/plugin-webpack": "^7.6.1",
     "@electron/fuses": "^1.8.0",
     "@tailwindcss/postcss": "^4.0.5",
+    "@types/auto-launch": "^5.0.5",
     "@types/electron-squirrel-startup": "^1.0.2",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
@@ -50,6 +51,7 @@
   "license": "MIT",
   "dependencies": {
     "@fontsource-variable/josefin-sans": "^5.1.1",
+    "auto-launch": "^5.0.6",
     "electron-squirrel-startup": "^1.0.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
