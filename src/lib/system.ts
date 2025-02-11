@@ -2,6 +2,7 @@ import path from 'node:path';
 import { App, BrowserWindow, Menu, Tray } from 'electron';
 import { resetTimer, stopTimers } from './timer';
 import { isMac } from './config';
+import { getTrayIconPath } from './utils';
 
 declare const MAIN_WINDOW_WEBPACK_ENTRY: string;
 declare const MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY: string;
@@ -21,14 +22,7 @@ export function createMainWindow(app: App) {
 }
 
 export function createTray(app: App, mainWindow: BrowserWindow) {
-  const tray = new Tray(
-    path.join(
-      app.getAppPath(),
-      'src',
-      'assets',
-      isMac ? 'trayIconTemplate.png' : 'trayIcon.png'
-    )
-  );
+  const tray = new Tray(getTrayIconPath());
 
   const contextMenu = Menu.buildFromTemplate([
     {
