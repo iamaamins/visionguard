@@ -78,10 +78,10 @@ export function resetTimer(mainWindow: BrowserWindow, tray: Tray) {
 }
 
 export function stopTimers() {
-  clearInterval(mainTimer);
+  if (mainTimer) clearInterval(mainTimer);
   mainTimer = null;
 
-  clearInterval(idleTimer);
+  if (idleTimer) clearInterval(idleTimer);
   idleTimer = null;
 
   resetState();
