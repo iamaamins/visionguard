@@ -20,6 +20,10 @@
   );
 }
 
+body {
+  font-family: 'Josefin Sans Variable', sans-serif;
+}
+
 html {
   margin: 0 auto;
   scroll-behavior: smooth;
