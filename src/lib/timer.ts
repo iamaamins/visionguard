@@ -36,15 +36,15 @@ export function startTimer(mainWindow: BrowserWindow, tray: Tray) {
     const seconds = Math.floor(state.timeRemaining % 60);
     tray.setTitle(
       `${state.isBreakTime ? 'Break' : 'Work'}: ${formatTime(
-        minutes
-      )}:${formatTime(seconds)}`
+        minutes,
+      )}:${formatTime(seconds)}`,
     );
 
     mainWindow.webContents.send('timer:update', state);
   }, 1000);
 }
 
-// Check idle time at every 30 seconds
+// Check idle time at every 10 seconds
 export function checkIdleTime(mainWindow: BrowserWindow) {
   if (idleTimer) clearInterval(idleTimer);
 
@@ -57,7 +57,7 @@ export function checkIdleTime(mainWindow: BrowserWindow) {
       state.isPaused = false;
       mainWindow.webContents.send('timer:update', state);
     }
-  }, 30 * 1000);
+  }, 10 * 1000);
 }
 
 export function resumeTimer(mainWindow: BrowserWindow, tray: Tray) {
