@@ -60,17 +60,6 @@ export function checkIdleTime(mainWindow: BrowserWindow) {
   }, 10 * 1000);
 }
 
-export function resumeTimer(mainWindow: BrowserWindow, tray: Tray) {
-  state.isPaused = false;
-  startTimer(mainWindow, tray);
-  mainWindow.webContents.send('timer:update', state);
-}
-
-export function pauseTimer(mainWindow: BrowserWindow) {
-  state.isPaused = true;
-  mainWindow.webContents.send('timer:update', state);
-}
-
 export function resetTimer(mainWindow: BrowserWindow, tray: Tray) {
   resetState();
   startTimer(mainWindow, tray);

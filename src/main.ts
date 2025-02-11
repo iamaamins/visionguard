@@ -2,8 +2,6 @@ import { app, ipcMain } from 'electron';
 import started from 'electron-squirrel-startup';
 import {
   checkIdleTime,
-  pauseTimer,
-  resumeTimer,
   resetTimer,
   startTimer,
   handleAuthEvents,
