@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main>
       {timer && (
-        <section className='flex h-screen w-screen flex-col items-center justify-center gap-2'>
+        <section className='m-auto flex h-screen w-xl flex-col items-center justify-center gap-2'>
           <p className='text-2xl font-medium'>
             {timer.isBreakTime ? 'Break' : 'Work'}
           </p>

@@ -1,6 +1,7 @@
 import { HashRouter, Routes, Route } from 'react-router';
 import RootLayout from './layout/RootLayout';
 import Home from './views/Home';
+import Processes from './views/Processes';
 
 export default function App() {
   return (
@@ -8,8 +9,7 @@ export default function App() {
       <Routes>
         <Route path='/' element={<RootLayout />}>
           <Route index element={<Home />} />
-          <Route path='/profile' element={<Home />} />
-          <Route path='/stat' element={<Home />} />
+          <Route path='/processes' element={<Processes />} />
         </Route>
       </Routes>
     </HashRouter>

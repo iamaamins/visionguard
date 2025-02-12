@@ -1,6 +1,6 @@
-import { IoStatsChart, IoHome } from 'react-icons/io5';
-import { FaUser } from 'react-icons/fa';
+import { IoHome } from 'react-icons/io5';
 import { Link } from 'react-router';
+import { RiQuestionAnswerFill } from 'react-icons/ri';
 
 export default function Navigation() {
   return (
@@ -8,11 +8,8 @@ export default function Navigation() {
       <Link to='/'>
         <IoHome />
       </Link>
-      <Link to='/profile'>
-        <FaUser />
-      </Link>
-      <Link to='/stat'>
-        <IoStatsChart />
+      <Link to='/processes'>
+        <RiQuestionAnswerFill />
       </Link>
     </nav>
   );
