@@ -1,4 +1,4 @@
-export const PROCESSES = [
+export const HOW_IT_WORKS = [
   {
     title: 'Work for 20 Minutes',
     description: 'Focus on your tasks without distraction.',

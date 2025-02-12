@@ -1,6 +1,6 @@
-import { PROCESSES } from '../data/PROCESSES';
+import { HOW_IT_WORKS } from '../data/HOW_IT_WORKS';
 
-export default function Processes() {
+export default function HowItWorks() {
   return (
     <main>
       <section className='m-auto flex h-screen w-xl flex-col items-center justify-center gap-4'>
@@ -12,14 +12,14 @@ export default function Processes() {
           </p>
         </div>
         <div className='space-y-2'>
-          {PROCESSES.map((process, index) => (
+          {HOW_IT_WORKS.map((el, index) => (
             <div className='flex gap-4'>
               <span className='bg-green flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full font-semibold text-white'>
                 {index + 1}
               </span>
               <div>
-                <h2 className='font-semibold'>{process.title}</h2>
-                <p className='opacity-80'>{process.description}</p>
+                <h2 className='font-semibold'>{el.title}</h2>
+                <p className='opacity-80'>{el.description}</p>
               </div>
             </div>
           ))}

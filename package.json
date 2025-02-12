@@ -50,7 +50,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@fontsource-variable/josefin-sans": "^5.1.1",
+    "@fontsource-variable/hanken-grotesk": "^5.1.1",
     "auto-launch": "^5.0.6",
     "electron-squirrel-startup": "^1.0.1",
     "react": "^19.0.0",

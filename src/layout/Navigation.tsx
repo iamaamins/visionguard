@@ -1,6 +1,6 @@
 import { IoHome } from 'react-icons/io5';
 import { Link } from 'react-router';
-import { RiQuestionAnswerFill } from 'react-icons/ri';
+import { BsExclamationCircleFill } from 'react-icons/bs';
 
 export default function Navigation() {
   return (
@@ -8,8 +8,8 @@ export default function Navigation() {
       <Link to='/'>
         <IoHome />
       </Link>
-      <Link to='/processes'>
-        <RiQuestionAnswerFill />
+      <Link to='/how-it-works'>
+        <BsExclamationCircleFill />
       </Link>
     </nav>
   );
