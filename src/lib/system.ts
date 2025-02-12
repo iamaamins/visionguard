@@ -48,7 +48,7 @@ export function createTray(app: App, mainWindow: BrowserWindow) {
   ]);
 
   tray.setContextMenu(contextMenu);
-  tray.setToolTip('Eye Care');
+  tray.setToolTip('Vision Guard');
 
   return tray;
 }

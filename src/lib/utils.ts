@@ -13,7 +13,7 @@ export function getTrayIconPath() {
 
 export async function launchAppOnLogin() {
   const autoLauncher = new AutoLaunch({
-    name: 'Eye Care',
+    name: 'Vision Guard',
     isHidden: true,
   });
 
