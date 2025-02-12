@@ -18,9 +18,6 @@ export function createMainWindow(app: App) {
 
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
 
-  mainWindow.hide();
-  app.dock.hide();
-
   return mainWindow;
 }
 

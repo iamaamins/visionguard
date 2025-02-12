@@ -12,10 +12,7 @@ export function getTrayIconPath() {
 }
 
 export async function launchAppOnLogin() {
-  const autoLauncher = new AutoLaunch({
-    name: 'Vision Guard',
-    isHidden: true,
-  });
+  const autoLauncher = new AutoLaunch({ name: 'Vision Guard', isHidden: true });
 
   try {
     const isEnabled = await autoLauncher.isEnabled();

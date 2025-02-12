@@ -1,16 +1,26 @@
 export const HOW_IT_WORKS = [
   {
+    title: 'Automatic Start',
+    description:
+      'Vision Guard launches automatically at login and runs in the background.',
+  },
+  {
     title: 'Work for 20 Minutes',
-    description: 'Focus on your tasks without distraction.',
+    description: 'Stay focused on your tasks without interruptions.',
   },
   {
     title: 'Take a 20-Second Break',
     description:
-      'After 20 minutes, the app will notify you to look at something 20 feet away for 20 seconds.',
+      'After 20 minutes, Vision Guard notifies you to look at something 20 feet away for 20 seconds.',
   },
   {
-    title: 'Repeat the Cycle',
+    title: 'Idle Detection',
     description:
-      'Once your 20-second break ends, Vision Guard will notify you to get back to work and restart the cycle.',
+      "If you're idle for 5 minutes, the timer pauses automatically and resumes when you return.",
+  },
+  {
+    title: 'Hands-Free Operation',
+    description:
+      'Vision Guard handles everything for you—tracking time, pausing, resuming, and sending reminders automatically.',
   },
 ] as const;

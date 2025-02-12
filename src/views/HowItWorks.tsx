@@ -2,8 +2,8 @@ import { HOW_IT_WORKS } from '../data/HOW_IT_WORKS';
 
 export default function HowItWorks() {
   return (
-    <main>
-      <section className='m-auto flex h-screen w-xl flex-col items-center justify-center gap-4'>
+    <main className='mx-auto w-xl'>
+      <section className='flex h-screen flex-col items-center justify-center space-y-4'>
         <div className='space-y-1'>
           <h1 className='text-3xl font-bold'>How Vision Guard Works?</h1>
           <p className='opacity-80'>
@@ -24,10 +24,6 @@ export default function HowItWorks() {
             </div>
           ))}
         </div>
-        <p className='opacity-80'>
-          This process repeats automatically, ensuring you protect your eyes
-          throughout the day without interrupting your workflow
-        </p>
       </section>
     </main>
   );
