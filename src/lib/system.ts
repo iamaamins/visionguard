@@ -26,15 +26,15 @@ export function createTray(app: App, mainWindow: BrowserWindow) {
 
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Open App',
+      label: 'Open Vision Guard',
       click: () => {
         mainWindow.show();
         if (isMac) app.dock.show();
       },
     },
-    { label: 'Reset', click: () => resetTimer(mainWindow, tray) },
+    { label: 'Reset Timer', click: () => resetTimer(mainWindow, tray) },
     {
-      label: 'Quit',
+      label: 'Quit Vision Guard',
       click: () => {
         mainWindow.removeAllListeners();
         tray.removeAllListeners();
