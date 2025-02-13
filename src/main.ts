@@ -7,15 +7,20 @@ import {
   handleAuthEvents,
 } from './lib/timer';
 import { isMac } from './lib/config';
-import { createMainWindow, createTray } from './lib/system';
+import {
+  createMainWindow,
+  createTray,
+  createApplicationMenu,
+} from './lib/system';
 import { launchAppOnLogin } from './lib/utils';
 
 if (started) app.quit();
 
 app.on('ready', () => {
-  // Create main window and tray
+  // System functions
   const mainWindow = createMainWindow(app);
   const tray = createTray(app, mainWindow);
+  createApplicationMenu();
 
   // App features
   startTimer(mainWindow, tray);

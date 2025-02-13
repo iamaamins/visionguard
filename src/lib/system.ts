@@ -1,5 +1,12 @@
 import path from 'node:path';
-import { App, BrowserWindow, Menu, Tray } from 'electron';
+import {
+  App,
+  BrowserWindow,
+  Menu,
+  Tray,
+  shell,
+  MenuItemConstructorOptions,
+} from 'electron';
 import { resetTimer, stopTimers } from './timer';
 import { isMac } from './config';
 import { getTrayIconPath } from './utils';
@@ -48,4 +55,70 @@ export function createTray(app: App, mainWindow: BrowserWindow) {
   tray.setToolTip('Vision Guard');
 
   return tray;
+}
+
+export function createApplicationMenu() {
+  const windowSubmenuItemOptions: MenuItemConstructorOptions[] = isMac
+    ? [{ type: 'separator' }, { role: 'front' }]
+    : [{ role: 'close' }];
+
+  const menuItemOptions: MenuItemConstructorOptions[] = [
+    {
+      role: 'appMenu',
+      label: 'Vision Guard',
+      submenu: [
+        { role: 'about' },
+        { type: 'separator' },
+        { role: 'services' },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideOthers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' },
+      ],
+    },
+    {
+      role: 'fileMenu',
+      label: 'File',
+      submenu: [isMac ? { role: 'close' } : { role: 'quit' }],
+    },
+    {
+      role: 'viewMenu',
+      label: 'View',
+      submenu: [
+        { role: 'reload' },
+        { role: 'forceReload' },
+        { type: 'separator' },
+        { role: 'resetZoom' },
+        { role: 'zoomIn' },
+        { role: 'zoomOut' },
+        { type: 'separator' },
+        { role: 'togglefullscreen' },
+      ],
+    },
+    {
+      role: 'windowMenu',
+      label: 'Window',
+      submenu: [
+        { role: 'minimize' },
+        { role: 'zoom' },
+        ...windowSubmenuItemOptions,
+      ],
+    },
+    {
+      role: 'help',
+      label: 'Help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click: async () =>
+            await shell.openExternal('https://www.visionguard.app'),
+        },
+      ],
+    },
+  ];
+
+  const updatedMenu = Menu.buildFromTemplate(menuItemOptions);
+  Menu.setApplicationMenu(updatedMenu);
 }
