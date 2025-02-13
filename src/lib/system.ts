@@ -29,11 +29,11 @@ export function createMainWindow(app: App) {
 }
 
 export function createTray(app: App, mainWindow: BrowserWindow) {
-  const tray = new Tray(getTrayIconPath());
+  const tray = new Tray(getTrayIconPath(app));
 
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: 'Open Vision Guard',
+      label: `Open ${app.name}`,
       click: () => {
         mainWindow.show();
         if (isMac) app.dock.show();
@@ -41,7 +41,7 @@ export function createTray(app: App, mainWindow: BrowserWindow) {
     },
     { label: 'Reset Timer', click: () => resetTimer(mainWindow, tray) },
     {
-      label: 'Quit Vision Guard',
+      label: `Quit ${app.name}`,
       click: () => {
         mainWindow.removeAllListeners();
         tray.removeAllListeners();
@@ -52,12 +52,12 @@ export function createTray(app: App, mainWindow: BrowserWindow) {
   ]);
 
   tray.setContextMenu(contextMenu);
-  tray.setToolTip('Vision Guard');
+  tray.setToolTip(app.name);
 
   return tray;
 }
 
-export function createApplicationMenu() {
+export function createApplicationMenu(app: App) {
   const windowSubmenuItemOptions: MenuItemConstructorOptions[] = isMac
     ? [{ type: 'separator' }, { role: 'front' }]
     : [{ role: 'close' }];
@@ -65,7 +65,7 @@ export function createApplicationMenu() {
   const menuItemOptions: MenuItemConstructorOptions[] = [
     {
       role: 'appMenu',
-      label: 'Vision Guard',
+      label: app.name,
       submenu: [
         { role: 'about' },
         { type: 'separator' },

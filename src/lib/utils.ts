@@ -1,9 +1,9 @@
-import { app } from 'electron';
+import { App } from 'electron';
 import path from 'node:path';
 import { isDev, isMac } from './config';
 import AutoLaunch from 'auto-launch';
 
-export function getTrayIconPath() {
+export function getTrayIconPath(app: App) {
   const icon = isMac ? 'trayIconTemplate.png' : 'trayIcon.png';
 
   if (!isDev) return path.join(process.resourcesPath, 'assets', icon);
@@ -11,8 +11,8 @@ export function getTrayIconPath() {
   return path.join(app.getAppPath(), 'src', 'assets', icon);
 }
 
-export async function launchAppOnLogin() {
-  const autoLauncher = new AutoLaunch({ name: 'Vision Guard', isHidden: true });
+export async function launchApplicationOnLogin(app: App) {
+  const autoLauncher = new AutoLaunch({ name: app.name });
 
   try {
     const isEnabled = await autoLauncher.isEnabled();

@@ -12,15 +12,15 @@ import {
   createTray,
   createApplicationMenu,
 } from './lib/system';
-import { launchAppOnLogin } from './lib/utils';
+import { launchApplicationOnLogin } from './lib/utils';
 
 if (started) app.quit();
 
-app.on('ready', () => {
+app.on('ready', async () => {
   // System functions
   const mainWindow = createMainWindow(app);
   const tray = createTray(app, mainWindow);
-  createApplicationMenu();
+  createApplicationMenu(app);
 
   // App features
   startTimer(mainWindow, tray);
@@ -28,7 +28,7 @@ app.on('ready', () => {
   handleAuthEvents(mainWindow, tray);
 
   // Launch app on login
-  launchAppOnLogin();
+  await launchApplicationOnLogin(app);
 
   // Event listeners
   mainWindow.on('close', (e) => {

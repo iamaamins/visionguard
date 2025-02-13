@@ -2,7 +2,7 @@
   "name": "visionguard",
   "productName": "Vision Guard",
   "version": "1.0.0",
-  "description": "Take care of your eyes",
+  "description": "Take care of your vision",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
