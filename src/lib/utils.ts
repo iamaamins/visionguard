@@ -11,7 +11,7 @@ export function getTrayIconPath(app: App) {
   return path.join(app.getAppPath(), 'src', 'assets', icon);
 }
 
-export async function launchApplicationOnLogin(app: App) {
+export async function setApplicationAsLoginItem(app: App) {
   const autoLauncher = new AutoLaunch({ name: app.name });
 
   try {

@@ -1,18 +1,13 @@
 import { app, ipcMain } from 'electron';
 import started from 'electron-squirrel-startup';
-import {
-  checkIdleTime,
-  resetTimer,
-  startTimer,
-  handleAuthEvents,
-} from './lib/timer';
+import { resetTimer, startTimers, handleAuthEvents } from './lib/timer';
 import { isMac } from './lib/config';
 import {
   createMainWindow,
   createTray,
   createApplicationMenu,
 } from './lib/system';
-import { launchApplicationOnLogin } from './lib/utils';
+import { setApplicationAsLoginItem } from './lib/utils';
 
 if (started) app.quit();
 
@@ -21,14 +16,10 @@ app.on('ready', async () => {
   const mainWindow = createMainWindow(app);
   const tray = createTray(app, mainWindow);
   createApplicationMenu(app);
+  await setApplicationAsLoginItem(app);
 
-  // App features
-  startTimer(mainWindow, tray);
-  checkIdleTime(mainWindow);
-  handleAuthEvents(mainWindow, tray);
-
-  // Launch app on login
-  await launchApplicationOnLogin(app);
+  // Start main and idle timers
+  startTimers(mainWindow, tray);
 
   // Event listeners
   mainWindow.on('close', (e) => {
@@ -36,5 +27,6 @@ app.on('ready', async () => {
     mainWindow.hide();
     if (isMac) app.dock.hide();
   });
+  handleAuthEvents(mainWindow, tray);
   ipcMain.handle('timer:reset', () => resetTimer(mainWindow, tray));
 });

@@ -12,8 +12,9 @@ const notify = (title: string, body: string) =>
 const formatTime = (time: number) => time.toString().padStart(2, '0');
 
 // Start the timer
-export function startTimer(mainWindow: BrowserWindow, tray: Tray) {
+export function startTimers(mainWindow: BrowserWindow, tray: Tray) {
   if (mainTimer) clearInterval(mainTimer);
+  if (idleTimer) clearInterval(idleTimer);
 
   mainTimer = setInterval(() => {
     if (state.isPaused) return;
@@ -42,11 +43,6 @@ export function startTimer(mainWindow: BrowserWindow, tray: Tray) {
 
     mainWindow.webContents.send('timer:update', state);
   }, 1000);
-}
-
-// Check idle time at every 10 seconds
-export function checkIdleTime(mainWindow: BrowserWindow) {
-  if (idleTimer) clearInterval(idleTimer);
 
   idleTimer = setInterval(() => {
     const idleTime = powerMonitor.getSystemIdleTime();
@@ -62,7 +58,7 @@ export function checkIdleTime(mainWindow: BrowserWindow) {
 
 export function resetTimer(mainWindow: BrowserWindow, tray: Tray) {
   resetState();
-  startTimer(mainWindow, tray);
+  startTimers(mainWindow, tray);
   mainWindow.webContents.send('timer:update', state);
 }
 
@@ -85,5 +81,5 @@ function resetState() {
 export function handleAuthEvents(mainWindow: BrowserWindow, tray: Tray) {
   powerMonitor.on('lock-screen', () => stopTimers());
   powerMonitor.on('shutdown', () => stopTimers());
-  powerMonitor.on('unlock-screen', () => startTimer(mainWindow, tray));
+  powerMonitor.on('unlock-screen', () => startTimers(mainWindow, tray));
 }
