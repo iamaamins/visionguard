@@ -1,6 +1,6 @@
-import { app, ipcMain } from 'electron';
+import { app } from 'electron';
 import started from 'electron-squirrel-startup';
-import { resetTimer, startTimers, handleAuthEvents } from './lib/timer';
+import { startTimers, handleEvents } from './lib/timer';
 import { isMac } from './lib/config';
 import {
   createMainWindow,
@@ -27,6 +27,5 @@ app.on('ready', async () => {
     mainWindow.hide();
     if (isMac) app.dock.hide();
   });
-  handleAuthEvents(mainWindow, tray);
-  ipcMain.handle('timer:reset', () => resetTimer(mainWindow, tray));
+  handleEvents(mainWindow, tray);
 });

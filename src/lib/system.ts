@@ -7,7 +7,7 @@ import {
   shell,
   MenuItemConstructorOptions,
 } from 'electron';
-import { resetTimer, stopTimers } from './timer';
+import { resetMainTimer, stopTimers } from './timer';
 import { isMac } from './config';
 import { getTrayIconPath } from './utils';
 
@@ -39,7 +39,7 @@ export function createTray(app: App, mainWindow: BrowserWindow) {
         if (isMac) app.dock.show();
       },
     },
-    { label: 'Reset Timer', click: () => resetTimer(mainWindow, tray) },
+    { label: 'Reset Timer', click: () => resetMainTimer() },
     {
       label: `Quit ${app.name}`,
       click: () => {

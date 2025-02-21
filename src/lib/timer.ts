@@ -1,4 +1,10 @@
-import { BrowserWindow, Notification, powerMonitor, Tray } from 'electron';
+import {
+  BrowserWindow,
+  ipcMain,
+  Notification,
+  powerMonitor,
+  Tray,
+} from 'electron';
 import { BREAK_TIME, IDLE_THRESHOLD, WORK_TIME } from './config';
 
 let mainTimer: NodeJS.Timeout | null = null;
@@ -11,7 +17,7 @@ const notify = (title: string, body: string) =>
 
 const formatTime = (time: number) => time.toString().padStart(2, '0');
 
-// Start the timer
+// Start the timers
 export function startTimers(mainWindow: BrowserWindow, tray: Tray) {
   if (mainTimer) clearInterval(mainTimer);
   if (idleTimer) clearInterval(idleTimer);
@@ -46,20 +52,9 @@ export function startTimers(mainWindow: BrowserWindow, tray: Tray) {
 
   idleTimer = setInterval(() => {
     const idleTime = powerMonitor.getSystemIdleTime();
-    if (idleTime >= IDLE_THRESHOLD && !state.isPaused) {
-      state.isPaused = true;
-      mainWindow.webContents.send('timer:update', state);
-    } else if (idleTime < IDLE_THRESHOLD && state.isPaused) {
-      state.isPaused = false;
-      mainWindow.webContents.send('timer:update', state);
-    }
+    if (idleTime >= IDLE_THRESHOLD && !state.isPaused) state.isPaused = true;
+    if (idleTime < IDLE_THRESHOLD && state.isPaused) state.isPaused = false;
   }, 10 * 1000);
-}
-
-export function resetTimer(mainWindow: BrowserWindow, tray: Tray) {
-  resetState();
-  startTimers(mainWindow, tray);
-  mainWindow.webContents.send('timer:update', state);
 }
 
 export function stopTimers() {
@@ -69,16 +64,17 @@ export function stopTimers() {
   if (idleTimer) clearInterval(idleTimer);
   idleTimer = null;
 
-  resetState();
+  resetMainTimer();
 }
 
-function resetState() {
+export function resetMainTimer() {
   state.isPaused = false;
   state.isBreakTime = false;
   state.timeRemaining = WORK_TIME;
 }
 
-export function handleAuthEvents(mainWindow: BrowserWindow, tray: Tray) {
+export function handleEvents(mainWindow: BrowserWindow, tray: Tray) {
+  ipcMain.handle('timer:reset', () => resetMainTimer());
   powerMonitor.on('lock-screen', () => stopTimers());
   powerMonitor.on('shutdown', () => stopTimers());
   powerMonitor.on('unlock-screen', () => startTimers(mainWindow, tray));
